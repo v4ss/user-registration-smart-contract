@@ -29,6 +29,14 @@ contract UserRegistration {
     }
 
     /**
+     * @notice Changes the owner address
+     * @dev Only for owner
+     */
+    function changeOwnerAdress(address ownerAddress) public onlyOwner {
+        owner = ownerAddress;
+    }
+
+    /**
      * @notice Find the index of the current user in the users array
      * @param userAddress value of the current user address
      * @return i value of the index
@@ -54,6 +62,16 @@ contract UserRegistration {
 
         /// Push the identity in the users array
         users.push(newUser);
+    }
+
+    /**
+     * @notice Add a list of users in the array
+     * @dev Only for owner
+     */
+    function registerUserList(User[] memory userList) public onlyOwner {
+        for(uint256 i = 0 ; i < userList.length ; i++) {
+            users.push(userList[i]);
+        }
     }
 
     /**
