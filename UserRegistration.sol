@@ -32,7 +32,7 @@ contract UserRegistration {
      * @notice Changes the owner address
      * @dev Only for owner
      */
-    function changeOwnerAdress(address ownerAddress) public onlyOwner {
+    function changeOwnerAddress(address ownerAddress) public onlyOwner {
         owner = ownerAddress;
     }
 
