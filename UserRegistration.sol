@@ -32,8 +32,8 @@ contract UserRegistration {
      * @notice Changes the owner address
      * @dev Only for owner
      */
-    function changeOwnerAddress(address ownerAddress) public onlyOwner {
-        owner = ownerAddress;
+    function changeOwnerAddress(address _ownerAddress) public onlyOwner {
+        owner = _ownerAddress;
     }
 
     /**
@@ -41,9 +41,9 @@ contract UserRegistration {
      * @param userAddress value of the current user address
      * @return i value of the index
      */
-    function findUserIndex(address userAddress) private view returns (uint256) {
+    function findUserIndex(address _userAddress) private view returns (uint256) {
         for(uint256 i = 0 ; i < users.length ; i++) {
-            if(users[i].userAddress == userAddress) {
+            if(users[i].userAddress == _userAddress) {
                 return i;
             }
         }
@@ -55,9 +55,9 @@ contract UserRegistration {
      * @notice Register the name of users
      * @param name value to set name of the user
      */
-    function setName(string memory name) public {
+    function setName(string memory _name) public {
         User memory newUser;
-        newUser.name = name;
+        newUser.name = _name;
         newUser.userAddress = msg.sender;
 
         /// Push the identity in the users array
@@ -68,9 +68,9 @@ contract UserRegistration {
      * @notice Add a list of users in the array
      * @dev Only for owner
      */
-    function registerUserList(User[] memory userList) public onlyOwner {
-        for(uint256 i = 0 ; i < userList.length ; i++) {
-            users.push(userList[i]);
+    function registerUserList(User[] memory _userList) public onlyOwner {
+        for(uint256 i = 0 ; i < _userList.length ; i++) {
+            users.push(_userList[i]);
         }
     }
 
@@ -119,9 +119,9 @@ contract UserRegistration {
      * @notice Deletes the registration of a particular user
      * @dev Only for owner
      */
-    function deleteUserByAddress (address userAddress) public onlyOwner {
+    function deleteUserByAddress (address _userAddress) public onlyOwner {
         uint256 lastIndex = users.length - 1;
-        uint256 index = findUserIndex(userAddress);
+        uint256 index = findUserIndex(_userAddress);
         /// User must exist (cf. findUserIndex function)
         require(index != type(uint256).max, "User not found");
 
